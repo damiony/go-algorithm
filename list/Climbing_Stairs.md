@@ -42,7 +42,9 @@ func climbStairs(n int) int {
 }
 ```
 
-**注意**：这种解法时间复杂太大，效率很差
+**注意**：这种解法时间复杂度太高，效率很差
+
+
 
 方法二：递归，保存中间结果
 
@@ -70,6 +72,8 @@ func climbStairsInternally(n int, history map[int]int) int{
 }
 ```
 
+
+
 方法三：迭代
 
 - 时间复杂度：O(n)
@@ -94,6 +98,8 @@ func climbStairs(n int) int {
 }
 ```
 
+
+
 方法四：斐波那契数列通向公式
 该方法当`n`很大时，误差也会变大，无法通过`leetcode`的执行。
 
@@ -110,5 +116,7 @@ func climbStairs(n int) int {
 	return int(result)
 }
 ```
+
+
 
 方法五：矩阵快速幂 TODO
