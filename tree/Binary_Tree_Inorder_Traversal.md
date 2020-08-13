@@ -2,7 +2,7 @@
 
 ----
 
-**题目描述**
+### 题目描述
 
 > 给定一个二叉树，返回它的中序遍历
 
@@ -14,7 +14,7 @@
 
 ----
 
-**解法**
+### 解法
 
 `go`语言中二叉树的定义为：
 
@@ -26,7 +26,7 @@ type TreeNode struct {
 }
 ```
 
-* 解法一：递归法，这是最常规的解法，但是不推荐
+方法一：递归法，这是最常规的解法，但是不推荐
 
 ```go
 func inorderTraversal(root *TreeNode) []int {
@@ -43,7 +43,9 @@ func inorderTraversal(root *TreeNode) []int {
 }
 ```
 
-* 解法二：迭代法，递归的本质是使用了系统栈，迭代法正是利用了这种机制，在代码中手动生成栈。
+
+
+方法二：迭代法，递归的本质是使用了系统栈，迭代法正是利用了这种机制，在代码中手动生成栈。
 
 ```go
 func inorderTraversal(root *TreeNode) []int {
@@ -73,7 +75,7 @@ func inorderTraversal(root *TreeNode) []int {
 
 
 
-* 解法三：morris遍历，这种解法比较晦涩，但是多看几遍代码就能理解其思想
+方法三：morris遍历，这种解法比较晦涩，但是多看几遍代码就能理解其思想
 
 ```go
 func inorderTraversal(root *TreeNode) []int {
