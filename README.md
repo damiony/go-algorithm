@@ -3,6 +3,15 @@
 > 数据结构和算法的go语言实现
 
 
+* 队列
+  * [Sliding_window_Maximum.md](https://github.com/damiony/go-algorithm/blob/master/queue/Sliding_window_Maximum.md)：滑动窗口最大值
+* 链表
+  * [Linked_List_Cycle](https://github.com/damiony/go-algorithm/blob/master/linked_list/Linked_List_Cycle.md)：环形链表
+  * [Linked_List_Cycle_II](https://github.com/damiony/go-algorithm/blob/master/linked_list/Linked_List_Cycle_II.md)：环形链表 II
+  * [Merge_Two_Sorted_Lists](https://github.com/damiony/go-algorithm/blob/master/linked_list/Merge_Two_Sorted_Lists.md)：合并两个有序链表
+  * [Reverse_Linked_List](https://github.com/damiony/go-algorithm/blob/master/linked_list/Reverse_Linked_List.md)：反转链表
+  * [Reverse_Nodes_in_k_Group](https://github.com/damiony/go-algorithm/blob/master/linked_list/Reverse_Nodes_in_k_Group.md)：`K`个一组翻转链表
+  * [Swap_Nodes_in_Pairs](https://github.com/damiony/go-algorithm/blob/master/linked_list/Swap_Nodes_in_Pairs.md)：两两交换链表的节点
 * 数组
   * [Container_With_Most_Water](https://github.com/damiony/go-algorithm/blob/master/list/Container_With_Most_Water.md)：盛最多水的容器
   * [2Sum](https://github.com/damiony/go-algorithm/blob/master/list/2Sum.md)：两数之和
@@ -12,14 +21,10 @@
   * [Move_Zeroes](https://github.com/damiony/go-algorithm/blob/master/list/Move_Zeroes.md)：移动零
   * [Plus_One](https://github.com/damiony/go-algorithm/blob/master/list/Plus_One.md)：加一
   * [Remove_Duplicates_from_Sorted_Array](https://github.com/damiony/go-algorithm/blob/master/list/Remove_Duplicates_from_Sorted_Array.md)：删除排序数组中的重复项
-
-* 链表
-  * [Linked_List_Cycle](https://github.com/damiony/go-algorithm/blob/master/linked_list/Linked_List_Cycle.md)：环形链表
-  * [Linked_List_Cycle_II](https://github.com/damiony/go-algorithm/blob/master/linked_list/Linked_List_Cycle_II.md)：环形链表 II
-  * [Merge_Two_Sorted_Lists](https://github.com/damiony/go-algorithm/blob/master/linked_list/Merge_Two_Sorted_Lists.md)：合并两个有序链表
-  * [Reverse_Linked_List](https://github.com/damiony/go-algorithm/blob/master/linked_list/Reverse_Linked_List.md)：反转链表
-  * [Reverse_Nodes_in_k_Group](https://github.com/damiony/go-algorithm/blob/master/linked_list/Reverse_Nodes_in_k_Group.md)：`K`个一组翻转链表
-  * [Swap_Nodes_in_Pairs](https://github.com/damiony/go-algorithm/blob/master/linked_list/Swap_Nodes_in_Pairs.md)：两两交换链表的节点
-
 * 树
   * [Binary_Tree_Inorder_Traversal](https://github.com/damiony/go-algorithm/blob/master/tree/Binary_Tree_Inorder_Traversal.md)：二叉树的中序遍历
+* 栈
+  * [Largest_Rectangle_in_Histogram.md](https://github.com/damiony/go-algorithm/blob/master/stack/Largest_Rectangle_in_Histogram.md)：柱状图中最大的矩形
+  * [Min_Stack.md](https://github.com/damiony/go-algorithm/blob/master/stack/Min_Stack.md)：最小栈
+  * [Valid_Parenthese.md](https://github.com/damiony/go-algorithm/blob/master/stack/Valid_Parenthese.md)：有效的括号
+
