@@ -4,7 +4,7 @@
 
 
 * 队列
-  * [Sliding_window_Maximum.md](https://github.com/damiony/go-algorithm/blob/master/queue/Sliding_window_Maximum.md)：滑动窗口最大值
+  * [Sliding_window_Maximum](https://github.com/damiony/go-algorithm/blob/master/queue/Sliding_window_Maximum.md)：滑动窗口最大值
 * 链表
   * [Linked_List_Cycle](https://github.com/damiony/go-algorithm/blob/master/linked_list/Linked_List_Cycle.md)：环形链表
   * [Linked_List_Cycle_II](https://github.com/damiony/go-algorithm/blob/master/linked_list/Linked_List_Cycle_II.md)：环形链表 II
@@ -25,10 +25,18 @@
   * [Remove_Duplicates_from_Sorted_Array](https://github.com/damiony/go-algorithm/blob/master/list/Remove_Duplicates_from_Sorted_Array.md)：删除排序数组中的重复项
 * 树
   * [Binary_Tree_Inorder_Traversal](https://github.com/damiony/go-algorithm/blob/master/tree/Binary_Tree_Inorder_Traversal.md)：二叉树的中序遍历
+  * [Binary_Tree_Preorder_Traversal](https://github.com/damiony/go-algorithm/blob/master/tree/Binary_Tree_Preorder_Traversal.md)：二叉树的前序遍历
+  * [Invert_Binary_Tree](https://github.com/damiony/go-algorithm/blob/master/tree/Invert_Binary_Tree.md)：翻转二叉树
+  * [Maximum_Depth_of_Binary_Tree.md](https://github.com/damiony/go-algorithm/blob/master/tree/Maximum_Depth_of_Binary_Tree.md)：二叉树的最大深度
+  * [Minimum_Depth_of_Binary_Tree](https://github.com/damiony/go-algorithm/blob/master/tree/Minimum_Depth_of_Binary_Tree.md)：二叉树的最小深度
+  * [N-ary_Tree_Level_Order_Traversal](https://github.com/damiony/go-algorithm/blob/master/tree/N-ary_Tree_Level_Order_Traversal.md)：`N`叉树的层序遍历
+  * [N-ary_Tree_Postorder_Traversal](https://github.com/damiony/go-algorithm/blob/master/tree/N-ary_Tree_Postorder_Traversal.md)：`N`叉树的后序遍历
+  * [N-ary_Tree_Preorder_Traversal](https://github.com/damiony/go-algorithm/blob/master/tree/N-ary_Tree_Preorder_Traversal.md)：`N`叉树的前序遍历
+  * [Validate_Binary_Search_Tree](https://github.com/damiony/go-algorithm/blob/master/tree/Validate_Binary_Search_Tree.md)：验证二叉搜索树
 * 栈
-  * [Largest_Rectangle_in_Histogram.md](https://github.com/damiony/go-algorithm/blob/master/stack/Largest_Rectangle_in_Histogram.md)：柱状图中最大的矩形
+  * [Largest_Rectangle_in_Histogram](https://github.com/damiony/go-algorithm/blob/master/stack/Largest_Rectangle_in_Histogram.md)：柱状图中最大的矩形
   * [Min_Stack.md](https://github.com/damiony/go-algorithm/blob/master/stack/Min_Stack.md)：最小栈
-  * [Valid_Parenthese.md](https://github.com/damiony/go-algorithm/blob/master/stack/Valid_Parenthese.md)：有效的括号
+  * [Valid_Parenthese](https://github.com/damiony/go-algorithm/blob/master/stack/Valid_Parenthese.md)：有效的括号
 * 其它
   - [Generate_Parentheses](https://github.com/damiony/go-algorithm/blob/master/other/Generate_Parentheses.md)：括号生成
 
