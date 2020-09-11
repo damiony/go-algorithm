@@ -12,6 +12,8 @@
   * [Reverse_Linked_List](https://github.com/damiony/go-algorithm/blob/master/linked_list/Reverse_Linked_List.md)：反转链表
   * [Reverse_Nodes_in_k_Group](https://github.com/damiony/go-algorithm/blob/master/linked_list/Reverse_Nodes_in_k_Group.md)：`K`个一组翻转链表
   * [Swap_Nodes_in_Pairs](https://github.com/damiony/go-algorithm/blob/master/linked_list/Swap_Nodes_in_Pairs.md)：两两交换链表的节点
+* 哈希表
+  - [Valid_Anagram](https://github.com/damiony/go-algorithm/blob/master/hash/Valid_Anagram.md)：有效的字母异位词
 * 数组
   * [Container_With_Most_Water](https://github.com/damiony/go-algorithm/blob/master/list/Container_With_Most_Water.md)：盛最多水的容器
   * [2Sum](https://github.com/damiony/go-algorithm/blob/master/list/2Sum.md)：两数之和
@@ -27,4 +29,6 @@
   * [Largest_Rectangle_in_Histogram.md](https://github.com/damiony/go-algorithm/blob/master/stack/Largest_Rectangle_in_Histogram.md)：柱状图中最大的矩形
   * [Min_Stack.md](https://github.com/damiony/go-algorithm/blob/master/stack/Min_Stack.md)：最小栈
   * [Valid_Parenthese.md](https://github.com/damiony/go-algorithm/blob/master/stack/Valid_Parenthese.md)：有效的括号
+* 其它
+  - [Generate_Parentheses](https://github.com/damiony/go-algorithm/blob/master/other/Generate_Parentheses.md)：括号生成
 
