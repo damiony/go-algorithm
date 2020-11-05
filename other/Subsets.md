@@ -30,7 +30,7 @@
 解法一：递归
 
 - 时间复杂度：`O(N*2^N)`
-- 空间复杂度：`O(N*2^N)`
+- 空间复杂度：`O(N)`
 
 ```go
 func subsets(nums []int) [][]int {
@@ -60,7 +60,7 @@ func recursion(nums []int, i int, result [][]int) [][]int {
 解法二：迭代
 
 - 时间复杂度：`O(N*2^N)`
-- 空间复杂度：`O(N*2^N)`
+- 空间复杂度：`O(1)`
 
 ```go
 func subsets(nums []int) [][]int {
@@ -86,7 +86,7 @@ func subsets(nums []int) [][]int {
 解法三：回溯法
 
 - 时间复杂度：`O(2^N)`
-- 空间复杂度：`O()`
+- 空间复杂度：`O(N)(此处是通常的空间复杂度，还得依赖具体语言的实现)`
 
 ```go
 func subsets(nums []int) [][]int {
@@ -116,7 +116,7 @@ func backtrack(nums []int, j int, result [][]int, sub []int) [][]int {
 解法四：二进制位法
 
 - 时间复杂度：`O(N*2^N)`
-- 空间复杂度：`O()`
+- 空间复杂度：`O(1)`
 
 ```go
 
