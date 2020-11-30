@@ -24,7 +24,7 @@
 
 ### 解法
 
-解法一：深度优先遍历
+解法一：深度优先遍历（一）
 
 ```go
 func generateParenthesis(n int) []string {
@@ -50,15 +50,47 @@ func generate(current string, leftCnt, rightCnt int, result []string) []string {
 }
 ```
 
+解法二：深度优先遍历（二）
+
+```go
+func generateParenthesis(n int) []string {
+	return generate(n, n)
+}
+
+func generate(leftCnt, rightCnt int) []string {
+	result := []string{}
+	if leftCnt <= 0 && rightCnt <= 0 {
+		result = append(result, "")
+		return result
+	}
+
+	if rightCnt > leftCnt {
+		right := generate(leftCnt, rightCnt-1)
+		for _, s := range right {
+			result = append(result, ")"+s)
+		}
+	}
+
+	if leftCnt > 0 {
+		left := generate(leftCnt-1, rightCnt)
+		for _, s := range left {
+			result = append(result, "("+s)
+		}
+	}
+
+	return result
+}
+```
 
 
-解法二：广度优先遍历
 
-代码写不动了，等哪天养好精神再来。
+解法三：广度优先遍历
+
+具体思想是使用队列或者栈，`go`代码实现不够简洁，需要记录左右括号的数量，所以省略。
 
 
 
-解法三：动态规划
+解法四：动态规划
 
 - 思想
 
