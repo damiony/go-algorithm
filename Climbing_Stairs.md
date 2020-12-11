@@ -74,7 +74,7 @@ func climbStairsInternally(n int, history map[int]int) int{
 
 
 
-方法三：迭代
+方法三：迭代，也可以称为动态规划
 
 - 时间复杂度：O(n)
 - 空间复杂度：O(1)
@@ -100,7 +100,7 @@ func climbStairs(n int) int {
 
 
 
-方法四：斐波那契数列通向公式
+方法四：斐波那契数列通项公式
 该方法当`n`很大时，误差也会变大，无法通过`leetcode`的执行。
 
 ```go
@@ -108,9 +108,9 @@ func climbStairs(n int) int {
 	var nFloat = float64(n)
 	var xQrt = math.Sqrt(5)
 
-  var c1 = math.Pow((1+xQrt)/2, nFloat + 1)
-  var c2 = math.Pow((1-xQrt)/2, nFloat + 1)
 
+    var c1 = math.Pow((1+xQrt)/2, nFloat + 1)
+    var c2 = math.Pow((1-xQrt)/2, nFloat + 1)
 	var result = (1 / xQrt) * (c1 - c2)
 
 	return int(result)
@@ -119,4 +119,40 @@ func climbStairs(n int) int {
 
 
 
-方法五：矩阵快速幂 TODO
+方法五：矩阵快速幂
+
+- 时间复杂度：`O(logn)`
+- 空间复杂度：`O(1)`
+
+```go
+func climbStairs(n int) int {
+	matrix := [][]int{
+		{1, 1},
+		{1, 0},
+	}
+	ans := matrix
+	temp := matrix
+	for n > 0 {
+		if n&1 == 1 {
+			ans = multiple(ans, temp)
+		}
+		temp = multiple(temp, temp)
+		n = n >> 1
+	}
+	return ans[1][0] * 1
+}
+
+func multiple(a [][]int, b [][]int) [][]int {
+	temp := make([][]int, 2)
+	for i := range temp {
+		temp[i] = make([]int, 2)
+	}
+	for i := 0; i < 2; i++ {
+		for j := 0; j < 2; j++ {
+			temp[i][j] = a[i][0]*b[0][j] + a[i][1]*b[1][j]
+		}
+	}
+	return temp
+}
+```
+
