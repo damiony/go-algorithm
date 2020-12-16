@@ -123,7 +123,7 @@ func maxProfit(prices []int) int {
 }
 ```
 
-解法四：动态规划2
+解法五：动态规划2
 
 - 时间复杂度：`O(n)`
 - 空间复杂度：`O(n)`
@@ -150,7 +150,7 @@ func maxProfit(prices []int) int {
 }
 ```
 
-解法五：动态规划3
+解法六：动态规划3
 
 是上面解法四的优化解法。
 
