@@ -1,22 +1,18 @@
-单词搜索
+单词搜索2
 
 ----
 
 ### 题目描述
 
-给定一个二维网格和一个单词，找出该单词是否存在于网格中。单词必须由相邻单元格的字母构成。
+给定一个 `m x n` 二维字符网格 `board` 和一个单词（字符串）列表 `words`，找出所有同时在二维网格和字典中出现的单词。
+
+单词必须按照字母顺序，通过 相邻的单元格 内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。
 
 示例：
 
 ```bash
-输入：
-board = [
-  ['A', 'B', 'C', 'E'],
-  ['S', 'F', 'C', 'S'],
-  ['A', 'D', 'E', 'E']
-]
-word = "ABCCED"
-输出：true
+输入：board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]
+输出：["eat","oath"]
 ```
 
 ----
@@ -25,10 +21,20 @@ word = "ABCCED"
 
 解法一：回溯
 
-- 时间复杂度：`O(nm * 3^L)`，n和m表示网格长、宽，L表示单词长度。
-- 空间复杂度：`O(nm)`
+- 时间复杂度：累了，分析不动了，待定。
+- 空间复杂度：累了，分析不动了，待定。
 
 ```go
+func findWords(board [][]byte, words []string) []string {
+	ans := []string{}
+	for _, w := range words {
+		if exist(board, w) {
+			ans = append(ans, w)
+		}
+	}
+	return ans
+}
+
 func exist(board [][]byte, word string) bool {
     n, m := len(board), len(board[0])
 	vis := make([][]bool, n)
