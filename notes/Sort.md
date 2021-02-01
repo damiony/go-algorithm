@@ -1,4 +1,4 @@
-### 衡量排序算法的效率
+## 1. 衡量排序算法的效率
 
 - 效率分析：
 
@@ -22,7 +22,7 @@
 
 ​	排序之后，相等元素之间原有的先后顺序不变，则为稳定。
 
-### 冒泡排序
+## 2. 冒泡排序
 
 - 比较相邻元素，如果不满足大小关系，就互换。
 
@@ -56,7 +56,7 @@ func Bubble(nums []int) []int {
 }
 ```
 
-### 插入排序
+## 3. 插入排序
 
 将数组分为两个区间，`已排序区间`和`未排序区间`。
 
@@ -90,7 +90,7 @@ func Insertion(nums []int) []int {
 }
 ```
 
-### 选择排序
+## 4. 选择排序
 
 从未排序区间选择最小的元素，放到已排序区间的末尾。
 
@@ -117,13 +117,11 @@ func Selection(nums []int) []int {
 }
 ```
 
-### 冒泡排序 vs 插入排序
+## 5. 冒泡排序 vs 插入排序
 
 - 冒泡排序的数据交换要比插入排序的数据移动复杂，冒泡排序需要3个赋值操作，而插入排序只需要1个。
 
-----
-
-### 归并排序
+## 6. 归并排序
 
 归并使用的是分治思想。
 
@@ -168,7 +166,7 @@ func Merge(nums []int) []int {
 }
 ```
 
-### 快速排序
+## 7. 快速排序
 
 - 思想：
 
@@ -188,37 +186,37 @@ func Merge(nums []int) []int {
 - 性能分析：
 
   - 是原地、不稳定的排序算法
-- 最坏情况下的时间复杂度为`O(n^2)`，最好情况、平均情况下的时间复杂度都是`O(nlogn)`。时间复杂度退化到`O(n^2)`的概率非常小。
-  
+  - 最坏情况下的时间复杂度为`O(n^2)`，最好情况、平均情况下的时间复杂度都是`O(nlogn)`。时间复杂度退化到`O(n^2)`的概率非常小。
+
 - 代码示例：
 
-  ```go
-  func Quick(nums []int) []int {
-  	if len(nums) <= 1 {
-  		return nums
-  	}
-  	p := partition(nums)
-  	Quick(nums[:p])
-  	Quick(nums[p+1:])
-  	return nums
-  }
-  
-  func partition(nums []int) int {
-  	n := len(nums)
-  	pivot := nums[n-1]
-  	i := 0
-  	for j := 0; j < n-1; j++ {
-  		if nums[j] < pivot {
-  			nums[i], nums[j] = nums[j], nums[i]
-  			i++
-  		}
-  	}
-  	nums[i], nums[n-1] = nums[n-1], nums[i]
-  	return i
-  }
-  ```
+```go
+func Quick(nums []int) []int {
+	if len(nums) <= 1 {
+		return nums
+	}
+	p := partition(nums)
+	Quick(nums[:p])
+	Quick(nums[p+1:])
+	return nums
+}
 
-### 桶排序
+func partition(nums []int) int {
+	n := len(nums)
+	pivot := nums[n-1]
+	i := 0
+	for j := 0; j < n-1; j++ {
+		if nums[j] < pivot {
+			nums[i], nums[j] = nums[j], nums[i]
+			i++
+		}
+	}
+	nums[i], nums[n-1] = nums[n-1], nums[i]
+	return i
+}
+```
+
+## 8. 桶排序
 
 - 思想：
 
@@ -238,7 +236,7 @@ func Merge(nums []int) []int {
 
   - 时间复杂度：`O(n)`
 
-### 计数排序
+## 9. 计数排序
 
 - 思想：
 
@@ -293,7 +291,7 @@ func Merge(nums []int) []int {
   }
   ```
 
-### 基数排序
+## 9. 基数排序
 
 - 适用场景：
 

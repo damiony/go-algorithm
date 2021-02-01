@@ -1,14 +1,12 @@
-二叉树的层序遍历
-
-----
-
 ### 题目描述
+
+**二叉树的层序遍历：**
 
 给你一个二叉树，返回其按层序遍历得到的节点值。（即逐层地，从左到右访问所有节点）
 
-示例：
+**示例：**
 
-```bash
+```shell
 输入：[3, 9, 20, null, null, 15, 7]
 输出：
 [
@@ -17,8 +15,6 @@
 	[15, 7]
 ]
 ```
-
-----
 
 ### 解法
 
@@ -32,9 +28,7 @@ type TreeNode struct {
 }
 ```
 
-
-
-解法一：BFS + 迭代
+**解法一：BFS + 迭代**
 
 - 时间复杂度：`O(N)`
 - 空间复杂度：`O(N)`
@@ -66,12 +60,9 @@ func levelOrder(root *TreeNode) [][]int {
 
 	return result
 }
-
 ```
 
-
-
-解法二：BFS + 递归
+**解法二：BFS + 递归**
 
 - 时间复杂度：`O(N)`
 - 空间复杂度：`O(N)`
@@ -111,3 +102,31 @@ func helper(res [][]int, q []*TreeNode) [][]int {
 }
 ```
 
+**解法三：DFS + 递归**
+
+- 时间复杂度：`O(n)`
+- 空间复杂度：`O(1)`
+
+```go
+func levelOrder(root *TreeNode) [][]int {
+	ans := [][]int{}
+	return helper(root, 0, ans)
+}
+
+func helper(root *TreeNode, layer int, ans [][]int) [][]int {
+	if root == nil {
+		return ans
+	}
+	if len(ans) <= layer {
+		ans = append(ans, []int{})
+	}
+	ans[layer] = append(ans[layer], root.Val)
+	if root.Left != nil {
+		ans = helper(root.Left, layer+1, ans)
+	}
+	if root.Right != nil {
+		ans = helper(root.Right, layer+1, ans)
+	}
+	return ans
+}
+```

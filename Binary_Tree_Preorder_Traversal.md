@@ -1,19 +1,15 @@
-二叉树的前序遍历
-
-----
-
 ### 题目描述
+
+**二叉树的前序遍历：**
 
 给定一个二叉树，返回它的前序遍历
 
-示例：
+**示例：**
 
 ```shell
 输入：[1, null, 2, 3]
 输出：[1, 2, 3]
 ```
-
-----
 
 ### 解法
 
@@ -27,9 +23,7 @@ type TreeNode struct {
 }
 ```
 
-
-
-解法一：递归法
+**解法一：递归法**
 
 - 时间复杂度：`O(n)`
 - 空间复杂度：`O(n)`
@@ -47,9 +41,7 @@ func preorderTraversal(root *TreeNode) []int {
 }
 ```
 
-
-
-解法二：迭代法 + 深度优先遍历
+**解法二：迭代法 + 深度优先遍历**
 
 - 时间复杂度：`O(n)`
 - 空间复杂度：`O(n)`
@@ -76,9 +68,7 @@ func preorderTraversal(root *TreeNode) []int {
 }
 ```
 
-
-
-解法三：迭代法 + 广度优先遍历
+**解法三：迭代法 + 广度优先遍历**
 
 - 时间复杂度：`O(n)`
 - 空间复杂度：`O(n)`
@@ -107,9 +97,7 @@ func preorderTraversal(root *TreeNode) []int {
 }
 ```
 
-
-
-解法四：morris遍历
+**解法四：morris遍历**
 
 - 时间复杂度：`O(n)`
 - 空间复杂度：`O(1)`
@@ -144,4 +132,3 @@ func preorderTraversal(root *TreeNode) []int {
     return result
 }
 ```
-
