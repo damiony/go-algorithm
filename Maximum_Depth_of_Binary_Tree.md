@@ -1,37 +1,31 @@
-二叉树的最大深度
-
-----
-
 ### 题目描述
+
+**二叉树的最大深度：**
 
 给定一个二叉树，找出其最大深度。
 
 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
 
-示例：
+**示例：**
 
 ```shell
 输入：[3, 9, 20, null, null, 15, 7]
 输出：3
 ```
 
-----
-
 ### 解法
 
-二叉树的定义为：
+**二叉树的定义为：**
 
 ```go
 type TreeNode struct {
-    Val int
-    Left *TreeNode
-    Right *TreeNode
+  Val int
+  Left *TreeNode
+  Right *TreeNode
 }
 ```
 
-
-
-解法一：递归
+**解法一：递归**
 
 - 时间复杂度：`O(n)`
 - 空间复杂度：`O(n)` 
@@ -50,9 +44,7 @@ func maxDepth(root *TreeNode) int {
 }
 ```
 
-
-
-解法二：`DFS`
+**解法二：`DFS`**
 
 - 时间复杂度：`O(n)`
 - 空间复杂度：`O(n)`
@@ -86,37 +78,34 @@ func maxDepth(root *TreeNode) int {
 }
 ```
 
-
-
-解法三：`BFS`
+**解法三：`BFS`**
 
 - 时间复杂度：`O(n)`
 - 空间复杂度：`O(n)`
 
 ```go
 func maxDepth(root *TreeNode) int {
+	dep := 0
 	if root == nil {
-		return 0
+		return dep
 	}
 
 	queue := []*TreeNode{root}
-	layer := 0
 	for len(queue) > 0 {
-		layer++
-		length := len(queue)
-		for length > 0 {
-			node := queue[0]
-			queue = queue[1:]
+		dep++
+		qLen := len(queue)
+		for i := 0; i < qLen; i++ {
+			node := queue[i]
 			if node.Left != nil {
 				queue = append(queue, node.Left)
 			}
 			if node.Right != nil {
 				queue = append(queue, node.Right)
 			}
-			length--
 		}
+		queue = queue[qLen:]
 	}
-	return layer
+
+	return dep
 }
 ```
-

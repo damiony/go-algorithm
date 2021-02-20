@@ -22,28 +22,26 @@
 
 ```go
 func isPalindrome(s string) bool {
-    n := len(s)
-    if n <= 0 {
-        return true
-    }
-    s = strings.ToLower(s)
-    left, right := 0, n - 1
-    for left < right {
-        if s[left] < '0' || s[left] > '9' && s[left] < 'a' || s[left] > 'z' {
-            left++
-            continue
-        }
-        if s[right] < '0' || s[right] > '9' && s[right] < 'a' || s[right] > 'z' {
-            right--
-            continue
-        }
-        if s[left] != s[right] {
-            return false
-        }
-        left++
-        right--
-    }
-    return true
+	s = strings.ToLower(s)
+	isOk := true
+	left, right := 0, len(s) - 1
+	for left < right {
+		if s[left] < '0' || s[left] > '9' && s[left] < 'a' || s[left] > 'z' {
+			left++
+			continue
+		}
+		if s[right] < '0' || s[right] > '9' && s[right] < 'a' || s[right] > 'z' {
+			right--
+			continue
+		}
+		if s[left] != s[right] {
+			isOk = false
+			break
+		}
+		left++
+		right--
+	}
+	return isOk
 }
 ```
 

@@ -44,13 +44,104 @@
 
   一般使用自上向下的堆化方法，从下标`n/2`开始，到下标`1`结束
 
+  自上向下建堆的时间复杂度是`O(n)`
+
+  自下向上建堆的时间复杂度为`O(nlogn)`
+
 - 排序
 
   将堆顶元素移到最后，然后对剩下的`n-1`个元素进行堆化，一直重复这个过程，直到剩下的元素个数为`1`
 
-时间复杂度：`O(nlogn)`
+  排序的时间复杂度是`O(nlogn)`
+
+总体的时间复杂度是：`O(nlogn)`
 
 ### 堆排序 VS 快速排序
 
 - 堆排序数据访问方式不友好
 - 堆排序交换次数多于快速排序
+
+### 堆排序代码
+
+```go
+package main
+
+type heap struct {
+	mem []int
+	cnt int
+}
+
+func newHeap(m []int) *heap {
+	h := &heap{mem: m, cnt: len(m)}
+	// 自上向下堆化
+	start := (h.cnt - 1 - 1) / 2
+	for i := start; i >= 0; i-- {
+		h.heapifyTop(i)
+	}
+	return h
+}
+
+// heapify 自下向上
+func (h *heap) heapifyBottom() {
+	i := h.cnt - 1
+	for i >= 0 {
+		if i/2 < 0 || h.mem[i/2] <= h.mem[i] {
+			break
+		}
+		h.mem[i], h.mem[i/2] = h.mem[i/2], h.mem[i]
+		i = i / 2
+	}
+	return
+}
+
+// heapify 自顶向下堆化
+func (h *heap) heapifyTop(i int) {
+	for i < h.cnt {
+		max := i
+		if 2*i+1 < h.cnt && h.mem[2*i+1] < h.mem[max] {
+			max = 2*i + 1
+		}
+		if 2*i+2 < h.cnt && h.mem[2*i+2] < h.mem[max] {
+			max = 2*i + 2
+		}
+		if max == i {
+			break
+		}
+		h.mem[max], h.mem[i] = h.mem[i], h.mem[max]
+		i = max
+	}
+	return
+}
+
+// Push 将元素放入堆中 如果堆满了 则比较堆顶
+func (h *heap) Push(x int) {
+	if len(h.mem) == h.cnt {
+		if x > h.mem[0] {
+			h.mem[0] = x
+			h.heapifyTop(0)
+		}
+	} else {
+		h.mem[h.cnt] = x
+		h.cnt++
+		h.heapifyBottom()
+	}
+	return
+}
+
+// Pop 弹出堆顶元素
+func (h *heap) Pop() int {
+	num := h.mem[0]
+	h.mem[0], h.mem[h.cnt-1] = h.mem[h.cnt-1], h.mem[0]
+	h.cnt--
+	h.heapifyTop(0)
+	return num
+}
+
+func (h *heap) Sort() []int {
+	ans := make([]int, h.cnt)
+	for i := range ans {
+		ans[i] = h.Pop()
+	}
+	return ans
+}
+```

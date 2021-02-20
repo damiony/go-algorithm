@@ -47,16 +47,17 @@ func maxProfit(prices []int) int {
 
 ```go
 func maxProfit(prices []int) int {
-	ans, min := 0, math.MaxInt64
+	minPri := prices[0]
+	maxPro := 0
 	for i := 0; i < len(prices); i++ {
-		if prices[i] < min {
-			min = prices[i]
+		if minPri > prices[i] {
+			minPri = prices[i]
 		}
-		if ans < prices[i]-min {
-			ans = prices[i] - min
+		if maxPro < prices[i]-minPri {
+			maxPro = prices[i] - minPri
 		}
 	}
-	return ans
+	return maxPro
 }
 ```
 

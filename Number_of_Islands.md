@@ -1,16 +1,14 @@
-岛屿数量
-
-----
-
 ### 题目描述
+
+**岛屿数量：**
 
 给定 '1'（陆地） 和 '0'（水） 组成的二维网格，计算网络中岛屿的数量。
 
 岛屿总是被水包围，并且岛屿只能由水平和竖直方向的相邻陆地连接形成。
 
-示例：
+**示例：**
 
-```bash
+```shell
 输入：
 grid = [
   ["1","1","0","0","0"],
@@ -22,11 +20,9 @@ grid = [
 输出：3
 ```
 
-----
-
 ### 解法
 
-解法一：深度优先遍历
+**解法一：深度优先遍历**
 
 - 时间复杂度：`O(M*N)`
 - 空间复杂度：`O(M*N)`
@@ -62,9 +58,7 @@ func dfs(grid [][]byte, r, c int) {
 }
 ```
 
-
-
-解法二：广度优先遍历
+**解法二：广度优先遍历**
 
 - 时间复杂度：`O(M*N)`
 - 空间复杂度：`O(min(M, N))`
@@ -119,90 +113,66 @@ func numIslands(grid [][]byte) int {
 
 ```go
 func numIslands(grid [][]byte) int {
-	nr := len(grid)
-	nc := len(grid[0])
-	u := &unionFind{
-		Count:  0,
-		Parent: make([]int, nr*nc),
-		Rank:   make([]int, nr*nc),
-	}
-	// 初始化并查集
-	for r := 0; r < nr; r++ {
-		for c := 0; c < nc; c++ {
-			if grid[r][c] == '1' {
-				u.makeSet(r*nc + c)
+	r, c := len(grid), len(grid[0])
+	uf := NewUnionFind(r * c)
+	for i := range grid {
+		for _, v := range grid[i] {
+			if v == '1' {
+				uf.count++
 			}
 		}
 	}
 
-	// 合并并查集
-	for r := 0; r < nr; r++ {
-		for c := 0; c < nc; c++ {
-			if grid[r][c] == '1' {
-				grid[r][c] = '0'
-				if r+1 < nr && grid[r+1][c] == '1' {
-					u.union(r*nc+c, (r+1)*nc+c)
-				}
-				if r-1 >= 0 && grid[r-1][c] == '1' {
-					u.union(r*nc+c, (r-1)*nc+c)
-				}
-				if c+1 < nc && grid[r][c+1] == '1' {
-					u.union(r*nc+c, r*nc+c+1)
-				}
-				if c-1 >= 0 && grid[r][c-1] == '1' {
-					u.union(r*nc+c, r*nc+c-1)
-				}
+	for i := range grid {
+		for j := range grid[i] {
+			if grid[i][j] == '0' {
+				continue
+			}
+			if j+1 < c && grid[i][j+1] == '1' {
+				uf.union(i*c+j, i*c+j+1)
+			}
+			if i+1 < r && grid[i+1][j] == '1' {
+				uf.union(i*c+j, (i+1)*c+j)
 			}
 		}
 	}
 
-	return u.getCounts()
+	return uf.count
 }
 
-/*
- * 以下是并查集的相关定义
- */
 type unionFind struct {
-	Count  int   // 集合个数
-	Parent []int // 对应祖先
-	Rank   []int // 秩
+	father, rank []int
+	count        int
 }
 
-func (u *unionFind) makeSet(x int) {
-	u.Parent[x] = x
-	u.Rank[x] = 0
-	u.Count++
-}
-
-func (u *unionFind) find(x int) int {
-	if u.Parent[x] != x {
-		u.Parent[x] = u.find(u.Parent[x])
+func NewUnionFind(n int) *unionFind {
+	father, rank := make([]int, n), make([]int, n)
+	for i := range father {
+		father[i] = i
+		rank[i] = i
 	}
-
-	return u.Parent[x]
+	return &unionFind{father, rank, 0}
 }
 
-func (u *unionFind) union(x, y int) {
-	xRoot := u.find(x)
-	yRoot := u.find(y)
-	if xRoot == yRoot {
+func (uf *unionFind) find(x int) int {
+	if uf.father[x] != x {
+		uf.father[x] = uf.find(uf.father[x])
+	}
+	return uf.father[x]
+}
+
+func (uf *unionFind) union(x, y int) {
+	rootX, rootY := uf.find(x), uf.find(y)
+	if rootX == rootY {
 		return
 	}
 
-	if u.Rank[xRoot] < u.Rank[yRoot] {
-		u.Parent[xRoot] = yRoot
-	} else if u.Rank[xRoot] > u.Rank[yRoot] {
-		u.Parent[yRoot] = xRoot
-	} else {
-		u.Parent[yRoot] = xRoot
-		u.Rank[xRoot]++
+	if uf.rank[rootX] < uf.rank[rootY] {
+		rootX, rootY = rootY, rootX
 	}
-	u.Count--
+	uf.father[rootY] = rootX
+	uf.rank[rootX] += uf.rank[rootY]
+	uf.count--
 	return
 }
-
-func (u *unionFind) getCounts() int {
-	return u.Count
-}
 ```
-
