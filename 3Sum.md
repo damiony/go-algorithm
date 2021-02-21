@@ -2,7 +2,7 @@
 
 **三数之和：**
 
-> 给你一个包含`n`个整数的数组`nums`，判断`nums`中是否存在三个元素`a, b, c,`，使得`a + b + c = 0`？请你找出所有满足条件且不重复的三元组。
+给你一个包含`n`个整数的数组`nums`，判断`nums`中是否存在三个元素`a, b, c,`，使得`a + b + c = 0`？请你找出所有满足条件且不重复的三元组。
 
 注：不可包含重复的三元数组。
 
@@ -20,10 +20,44 @@
 
 **方法一：** 暴力求解(**不推荐**)
 
-循环遍历三遍数组，找出符合条件的组合，然后输出。
+循环遍历三遍数组，找出符合条件的组合，并且去重，然后输出。
 
 - 时间复杂度：O(n^3)
-- 空间复杂度: O(1)
+- 空间复杂度: O(n)
+
+```go
+func threeSum(nums []int) [][]int {
+	sort.Ints(nums)
+
+	length := len(nums)
+	if length == 0 || nums[length-1] < 0 {
+		return nil
+	}
+
+	nMap := map[int]int{}
+	for i := 0; i < length; i++ {
+		nMap[nums[i]] = i
+	}
+
+	ans := [][]int{}
+	for i := 0; i < length-2; i++ {
+		if i > 0 && nums[i] == nums[i-1] {
+			continue
+		}
+		for j := i + 1; j < length-1; j++ {
+			if j > i+1 && nums[j] == nums[j-1] {
+				continue
+			}
+			target := -nums[i] - nums[j]
+			if idx, ok := nMap[target]; ok && idx > j {
+				ans = append(ans, []int{nums[i], nums[j], target})
+			}
+		}
+	}
+
+	return ans
+}
+```
 
 **方法二：** 排序 + 两次遍历 + 双指针
 

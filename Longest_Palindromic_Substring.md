@@ -29,7 +29,7 @@ func longestPalindrome(s string) string {
 		dp[i] = make([]bool, n)
 	}
 
-	start, end := 0, -1 // 返回s[start:end+1]，所以end需要+1
+	start, end := 0, -1 // 返回s[start:end+1]
 	for w := 0; w < n; w++ {
 		for left := 0; left+w < n; left++ {
 			right := left + w
@@ -60,7 +60,7 @@ func longestPalindrome(s string) string {
 	if n <= 1 {
 		return s
 	}
-	start, end := 0, 0
+	start, end := -1, 0
 	for i := 0; i < n; i++ {
 		left1, right1 := i, i
 		for left1 >= 0 && right1 < n && s[left1] == s[right1] {
@@ -90,53 +90,58 @@ func longestPalindrome(s string) string {
 
 ```go
 func longestPalindrome(s string) string {
-	// 将字符串转换成偶数个字符
+	n := len(s)
+	if n <= 1 {
+		return s
+	}
+	// 奇数长度转换成偶数长度
 	t := "#"
-	for i := 0; i < len(s); i++ {
+	for i := 0; i < n; i++ {
 		t += string(s[i]) + "#"
 	}
-	arm := []int{}
-	// lastMid：手臂最远时，对应的中心点
-	// maxArm：最远的手臂长度
-	// lastAns：最长回文串对应的中心点下标
-	lastMid, maxArm, lastAns := 0, 0, 0
-	for i := 0; i < len(t); i++ {
-		if i < lastMid+maxArm {
-			// 如果该中心点位于最远臂长的范围内
-			cur := lastMid + maxArm - i
-			if cur > arm[2*lastMid-i] {
-				cur = arm[2*lastMid-i]
+	n = len(t)
+
+	// 所有字符的臂长
+	arm := make([]int, n)
+	// 中心点 臂长 最长臂长对应的中心
+	mid, armL, resM := 0, 0, 0
+
+	for i := 0; i < n; i++ {
+		if i < mid+armL {
+			// 先计算最小边界
+			cur := mid + armL - i
+			if cur > arm[2*mid-i] {
+				cur = arm[2*mid-i]
 			}
+			// 根据边界扩散
 			left, right := i-cur, i+cur
-			for left-1 >= 0 && right+1 < len(t) && t[left-1] == t[right+1] {
+			for left-1 >= 0 && right+1 < n && t[left-1] == t[right+1] {
 				left--
 				right++
 			}
-			cur = (right - left) >> 1
-			arm = append(arm, cur)
+			// 记录臂长
+			arm[i] = (right - left) >> 1
 		} else {
-			// 如果该中心点已经超出最远臂长的范围
 			left, right := i, i
-			for left-1 >= 0 && right+1 < len(t) && t[left-1] == t[right+1] {
+			for left-1 >= 0 && right+1 < n && t[left-1] == t[right+1] {
 				left--
 				right++
 			}
-			cur := (right - left) >> 1
-			arm = append(arm, cur)
+			// 记录臂长
+			arm[i] = (right - left) >> 1
 		}
-		// 更新最远臂长
-		if arm[i] > maxArm {
-			maxArm = arm[i]
-			lastMid = i
+		// 更新臂长范围
+		if mid+armL < i+arm[i] {
+			mid, armL = i, arm[i]
 		}
-		// 更新最长回文串对应的中心点
-		if arm[lastMid] > arm[lastAns] {
-			lastAns = lastMid
+		// 更新答案
+		if arm[i] > arm[resM] {
+			resM = i
 		}
 	}
 
-	start := (lastAns - arm[lastAns]) >> 1
-	end := start + arm[lastAns]
+	start := (resM - arm[resM]) >> 1
+	end := start + arm[resM]
 	return s[start:end]
 }
 ```

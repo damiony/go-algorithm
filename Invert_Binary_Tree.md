@@ -1,16 +1,12 @@
-翻转二叉树
-
-----
-
 ### 题目描述
+
+**翻转二叉树：**
 
 翻转一颗二叉树
 
-----
-
 ### 解法
 
-二叉树的定义为：
+**二叉树的定义为：**
 
 ```go
 type TreeNode struct {
@@ -20,53 +16,44 @@ type TreeNode struct {
 }
 ```
 
-
-
-解法一：递归
+**解法一：递归**
 
 - 时间复杂度：`O(n)`
 - 空间复杂度：`O(n)`
 
 ```go
 func invertTree(root *TreeNode) *TreeNode {
-    if root == nil {
-        return root
-    }
-
-    right, left := root.Right, root.Left
-    root.Right = invertTree(left)
-    root.Left = invertTree(right)
-
-    return root
+	if root == nil {
+		return nil
+	}
+	root.Left, root.Right = invertTree(root.Right), invertTree(root.Left)
+	return root
 }
 ```
 
-
-
-解法二：迭代
+**解法二：迭代**
 
 - 时间复杂度：`O(n)`
 - 空间复杂度：`O(n)`
 
 ```go
 func invertTree(root *TreeNode) *TreeNode {
-    if root == nil {
-        return nil
-    }
-
-    queue := []*TreeNode{root}
-    for len(queue) > 0 {
-        if queue[0].Left != nil {
-            queue = append(queue, queue[0].Left)
-        }
-        if queue[0].Right != nil {
-            queue = append(queue, queue[0].Right)
-        }
-        queue[0].Left, queue[0].Right = queue[0].Right, queue[0].Left
-        queue = queue[1:]
-    }
-
-    return root
+	if root == nil {
+		return nil
+	}
+	queue := []*TreeNode{root}
+	for len(queue) > 0 {
+		node := queue[0]
+		queue = queue[1:]
+		node.Left, node.Right = node.Right, node.Left
+		if node.Left != nil {
+			queue = append(queue, node.Left)
+		}
+		if node.Right != nil {
+			queue = append(queue, node.Right)
+		}
+	}
+	return root
 }
-```
 
+```

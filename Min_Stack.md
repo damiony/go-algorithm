@@ -1,8 +1,6 @@
-最小栈
-
-----
-
 ### 题目描述
+
+**最小栈：**
 
 设计一个支持`push`、`pop`、`top`操作，并且能在常数时间内检索到最小元素的栈
 
@@ -13,7 +11,7 @@
 
 提示：`pop`、`top`、`getMin`总是在非空栈上调用
 
-示例：
+**示例：**
 
 ```shell
 输入：["MinStack", "push", "push", "push", "getMin", "pop", "top", "getMin"]
@@ -21,11 +19,9 @@
 输出：[null, null, null, null, -3, null, 0, -2]
 ```
 
-----
-
 ### 解法
 
-解法一：使用一个辅助栈，存放当前栈中的最小值
+**解法一：使用一个辅助栈，存放当前栈中的最小值**
 
 - 时间复杂度：O(1)
 - 空间复杂度：O(n)
@@ -85,4 +81,3 @@ func (m *MinStack) GetMin() int {
 	return m.minStack[minLen-1]
 }
 ```
-
