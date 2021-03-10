@@ -93,28 +93,34 @@ func strToInt(str string) int {
 
 ```go
 func strToInt(str string) int {
+	ans := 0
+	length := len(str)
 	start := 0
-	for ; start < len(str); start++ {
-		if str[start] != ' ' {
-			break
-		}
-	}
-	if start >= len(str) {
-		return 0
+	if start >= length {
+		return ans
 	}
 
-	ans, sign := 0, 1
-	if str[start] == '-' || str[start] == '+' {
+	for start < length && str[start] == ' ' {
+		start++
+	}
+	if start >= length {
+		return ans
+	}
+
+	sign := 1
+	if str[start] == '+' || str[start] == '-' {
 		if str[start] == '-' {
 			sign = -1
 		}
 		start++
 	}
-	for i := start; i < len(str); i++ {
-		if str[i] < '0' || str[i] > '9' {
+
+	for ; start < length; start++ {
+		ch := str[start]
+		if ch < '0' || ch > '9' {
 			break
 		}
-		ans = ans*10 + int(str[i]-'0')
+		ans = 10*ans + int(ch-'0')
 		if ans > math.MaxInt32+1 {
 			ans = math.MaxInt32 + 1
 		}
@@ -129,6 +135,8 @@ func strToInt(str string) int {
 ```
 
 **解法三：正则表达式**
+
+只是一个思路，不能使用库函数哈。
 
 ```go
 func myAtoi(s string) int {

@@ -1,12 +1,10 @@
-括号生成
-
-----
-
 ### 题目描述
+
+**括号生成：**
 
 数字`n`代表生成括号的对数，请设计一个函数，能够生成所有可能的有效括号组合
 
-示例：
+**示例：**
 
 ```shell
 输入：n = 3
@@ -20,37 +18,31 @@
 ]
 ```
 
-----
-
 ### 解法
 
-解法一：深度优先遍历（一）
+**解法一：深度优先遍历（一）**
 
 ```go
 func generateParenthesis(n int) []string {
-	result := []string{}
-	return generate("", n, n, result)
+	return helper(n, n, "")
 }
 
-func generate(current string, leftCnt, rightCnt int, result []string) []string {
-	if leftCnt <= 0 && rightCnt <= 0 {
-		result = append(result, current)
-		return result
+func helper(left, right int, str string) []string {
+	ret := []string{}
+	if left == 0 && right == 0 {
+		ret = append(ret, str)
 	}
-
-	if rightCnt > leftCnt {
-		result = generate(current+")", leftCnt, rightCnt-1, result)
+	if left < right {
+		ret = append(ret, helper(left, right-1, str+")")...)
 	}
-
-	if leftCnt > 0 {
-		result = generate(current+"(", leftCnt-1, rightCnt, result)
+	if left > 0 {
+		ret = append(ret, helper(left-1, right, str+"(")...)
 	}
-
-	return result
+	return ret
 }
 ```
 
-解法二：深度优先遍历（二）
+**解法二：深度优先遍历（二）**
 
 ```go
 func generateParenthesis(n int) []string {
@@ -84,19 +76,15 @@ func generate(leftCnt, rightCnt int) []string {
 
 
 
-解法三：广度优先遍历
+**解法三：广度优先遍历**
 
 具体思想是使用队列或者栈，`go`代码实现不够简洁，需要记录左右括号的数量，所以省略。
 
+**解法四：动态规划**
 
+第`i`对括号组合可以由第`i-1`对括号组成。
 
-解法四：动态规划
-
-- 思想
-
-  第`i`对括号组合可以由第`i-1`对括号组成。
-
-  动态规划方程为：`第i对括号组合 = "(" + 可能的括号组合 + ")" + 剩下的括号组合`。
+动态规划方程为：`第i对括号组合 = "(" + 可能的括号组合 + ")" + 剩下的括号组合`。
 
 ```go
 func generateParenthesis(n int) []string {
@@ -122,4 +110,3 @@ func generateParenthesis(n int) []string {
 	return dp[n]
 }
 ```
-
