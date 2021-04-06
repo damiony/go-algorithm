@@ -25,6 +25,9 @@
 
 **解法一：顺序遍历**
 
+- 时间复杂度：`O(kn * k)`, `n`表示链表长度
+- 空间复杂度：`O(1)`
+
 ```go
 func mergeKLists(lists []*ListNode) *ListNode {
 	// 过滤无效数据
@@ -64,4 +67,48 @@ func mergeKLists(lists []*ListNode) *ListNode {
 
 **解法二：使用最小堆**
 
-略。
+代码量较多，略。
+
+**解法三：两两合并**
+
+- 时间复杂度：`O(kn * logk)`
+- 空间复杂度：`O(logk)`
+
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func mergeKLists(lists []*ListNode) *ListNode {
+    if len(lists) == 0 {
+        return nil
+    }
+    if len(lists) == 1 {
+        return lists[0]
+    }
+
+    mid := len(lists) >> 1
+    left := mergeKLists(lists[0:mid])
+    right := mergeKLists(lists[mid:])
+    return mergeTwoLists(left, right)
+}
+
+func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+    dummy := &ListNode{}
+    tmp := dummy
+    for list1 != nil || list2 != nil {
+        if list1 == nil || (list2 != nil && list2.Val < list1.Val) {
+            tmp.Next = list2
+            list2 = list2.Next
+        } else {
+            tmp.Next = list1
+            list1 = list1.Next
+        }
+        tmp = tmp.Next
+    }
+    return dummy.Next
+}
+```
