@@ -104,8 +104,6 @@ func numIslands(grid [][]byte) int {
 }
 ```
 
-
-
 解法三：并查集
 
 - 时间复杂度：
@@ -113,66 +111,63 @@ func numIslands(grid [][]byte) int {
 
 ```go
 func numIslands(grid [][]byte) int {
-	r, c := len(grid), len(grid[0])
-	uf := NewUnionFind(r * c)
-	for i := range grid {
-		for _, v := range grid[i] {
-			if v == '1' {
-				uf.count++
-			}
-		}
-	}
+    n, m := len(grid), len(grid[0])
+    uf := newUnionFindSet(n * m)
 
-	for i := range grid {
-		for j := range grid[i] {
-			if grid[i][j] == '0' {
-				continue
-			}
-			if j+1 < c && grid[i][j+1] == '1' {
-				uf.union(i*c+j, i*c+j+1)
-			}
-			if i+1 < r && grid[i+1][j] == '1' {
-				uf.union(i*c+j, (i+1)*c+j)
-			}
-		}
-	}
+    counts := 0
+    for i := range grid {
+        for j := range grid[i] {
+            if grid[i][j] != '1' {
+                continue
+            }
+            counts++
+            if j+1 < m && grid[i][j+1] == '1' && uf.union(i*m+j, i*m+j+1) {
+                counts--
+            }
+            if i+1 < n && grid[i+1][j] == '1' && uf.union(i*m+j, (i+1)*m+j) {
+                counts--
+            }
+        }
+    }
 
-	return uf.count
+    return counts
 }
 
-type unionFind struct {
-	father, rank []int
-	count        int
+type unionFindSet struct {
+    father  []int
+    rank    []int
 }
 
-func NewUnionFind(n int) *unionFind {
-	father, rank := make([]int, n), make([]int, n)
-	for i := range father {
-		father[i] = i
-		rank[i] = i
-	}
-	return &unionFind{father, rank, 0}
+func newUnionFindSet(n int) *unionFindSet {
+    father := make([]int, n)
+    rank := make([]int, n)
+    for i := range father {
+        father[i] = i
+        rank[i] = 1
+    }
+    return &unionFindSet{father, rank}
 }
 
-func (uf *unionFind) find(x int) int {
-	if uf.father[x] != x {
-		uf.father[x] = uf.find(uf.father[x])
-	}
-	return uf.father[x]
+func (uf *unionFindSet) find(x int) int {
+    if uf.father[x] != x {
+        uf.father[x] = uf.find(uf.father[x])
+    }
+    return uf.father[x]
 }
 
-func (uf *unionFind) union(x, y int) {
-	rootX, rootY := uf.find(x), uf.find(y)
-	if rootX == rootY {
-		return
-	}
+func (uf *unionFindSet) union (x, y int) bool {
+    xRoot, yRoot := uf.find(x), uf.find(y)
+    if xRoot == yRoot {
+        return false
+    }
 
-	if uf.rank[rootX] < uf.rank[rootY] {
-		rootX, rootY = rootY, rootX
-	}
-	uf.father[rootY] = rootX
-	uf.rank[rootX] += uf.rank[rootY]
-	uf.count--
-	return
+    if uf.rank[xRoot] < uf.rank[yRoot] {
+        xRoot, yRoot = yRoot, xRoot
+    }
+
+    uf.father[yRoot] = xRoot
+    uf.rank[xRoot] += uf.rank[yRoot]
+
+    return true
 }
 ```
