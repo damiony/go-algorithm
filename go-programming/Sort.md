@@ -2,37 +2,35 @@
 
 可以使用`sort`包对数据集合进行排序，该包实现了四种基本排序算法：插入排序、归并排序、堆排序和快速排序。
 
-
-
 ## 数据集合排序
 
 - 数据集合需要实现`sort.Interface`接口的三个方法，该接口定义为：
 
   ```go
   type Interface interface {
-      Len() int
-      Less(i, j int) bool
-      Swap(i, j int)
+    Len() int
+    Less(i, j int) bool
+    Swap(i, j int)
   }
   ```
 
 - 数据集合实现了这三个方法后，即可调用`sort`包的`Sort()`方法排序。`Sort()`方法定义为：
 
   ```go
-func Sort(data interface)
+  func Sort(data interface)
   ```
 
 - 判断数据集合是否已经排好序，可以使用`IsSorted`方法：
 
   ```go
   func IsSorted(data Interface) bool {
-      n := data.Len()
-      for i := n - 1; i > 0; i-- {
-          if data.Less(i, i-1) {
-              return false
-          }
+    n := data.Len()
+    for i := n - 1; i > 0; i-- {
+      if data.Less(i, i-1) {
+        return false
       }
-      return true
+    }
+    return true
   }
   ```
 
@@ -40,15 +38,15 @@ func Sort(data interface)
 
   ```go
   type reverse struct {
-      Interface
+    Interface
   }
-  
+
   func (r reverse) Less (i, j int) bool {
-      return r.Interface.Less(j, i)
+    return r.Interface.Less(j, i)
   }
-  
+
   func Reverse(data Interface) Interface {
-      return &reverse{data}
+    return &reverse{data}
   }
   ```
 
@@ -82,19 +80,15 @@ func (m MyPerson) Swap(i, j int) {
 }
 
 func main() {
-    stus := MyPerson{
-        {30, "c"},
-        {25, "b"},
-        {20, "a"},
-    }
-    sort.Sort(stus)
-    fmt.Println(stus)
+  stus := MyPerson{
+    {30, "c"},
+    {25, "b"},
+    {20, "a"},
+  }
+  sort.Sort(stus)
+  fmt.Println(stus)
 }
 ```
-
-
-
-
 
 ## 内部数据类型排序
 
@@ -124,6 +118,3 @@ func main() {
   a := []string{"a", "b", "ab", "ba"}
   sort.Strings(a)
   ```
-
-  
-

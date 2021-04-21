@@ -1,25 +1,21 @@
-跳跃游戏
-
-----
-
 ### 题目描述
+
+**跳跃游戏**
 
 给定一个非负整数，最初位于整数的第一个位置。数组中的每个元素代表你在该位置可以跳跃的最大长度。
 
 请判断能否到达最后一个位置。
 
-示例：
+**示例：**
 
-```bash
+```shell
 输入：[2, 3, 1, 1, 4]
 输出：true
 ```
 
-----
-
 ### 解法
 
-解法一：`DFS`
+**解法一：`DFS`**
 
 从最后一个位置开始倒推。
 
@@ -55,26 +51,24 @@ func helper(nums []int, end int, visited []bool) bool {
 }
 ```
 
-解法二：贪心
+**解法二：贪心**
 
 - 时间复杂度：`O(N)`
 - 空间复杂度：`O(1)`
 
 ```go
 func canJump(nums []int) bool {
-	maxDistance := 0
-	for i := 0; i < len(nums) - 1; i++ {
-		if i > maxDistance {
-			break
-		}
-		if i+nums[i] > maxDistance {
-			maxDistance = nums[i] + i
-		}
-	}
-	if maxDistance >= len(nums) - 1 {
-		return true
-	}
-	return false
+    remote := 0
+    
+    for i := 0; i <= remote; i++ {
+        if remote < nums[i] + i {
+            remote = nums[i] + i
+        }
+        if remote >= len(nums) - 1 {
+            return true
+        }
+    }
+
+    return false
 }
 ```
-
