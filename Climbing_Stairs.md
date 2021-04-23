@@ -98,14 +98,14 @@ func climbStairs(n int) int {
 
 ```go
 func climbStairs(n int) int {
-	var nFloat = float64(n)
-	var xQrt = math.Sqrt(5)
+    var nFloat = float64(n)
+    var xQrt = math.Sqrt(5)
 
-  var c1 = math.Pow((1+xQrt)/2, nFloat + 1)
-  var c2 = math.Pow((1-xQrt)/2, nFloat + 1)
-	var result = (1 / xQrt) * (c1 - c2)
+    var c1 = math.Pow((1+xQrt)/2, nFloat + 1)
+    var c2 = math.Pow((1-xQrt)/2, nFloat + 1)
+    var result = (1 / xQrt) * (c1 - c2)
 
-	return int(result)
+    return int(result)
 }
 ```
 
