@@ -17,7 +17,36 @@
 
 时间复杂度过高，不讨论。
 
-**解法二：动态规划**
+**解法二：常规的动态规划**
+
+这是常规的动态规划解法，时间复杂度和空间复杂度都比较高。
+
+- 时间复杂度：`O(n^2)`
+- 空间复杂度：`O(n)`
+
+```go
+func maxSubArray(nums []int) int {
+	max := math.MinInt64
+	dp := make([]int, len(nums))
+	for i := 0; i < len(nums); i++ {
+		dp[i] = nums[i]
+		if max < dp[i] {
+			max = dp[i]
+		}
+	}
+	for i := 2; i <= len(nums); i++ {
+		for j := len(nums) - 1; j >= i-1; j-- {
+			dp[j] = dp[j-1] + nums[j]
+			if dp[j] > max {
+				max = dp[j]
+			}
+		}
+	}
+	return max
+}
+```
+
+**解法三：优化的动态规划**
 
 思想：计算以`i`元素结尾的数组中，具有最大和的连续数组。`0 <= i <= n-1`
 
@@ -42,7 +71,7 @@ func maxSubArray(nums []int) int {
 }
 ```
 
-**解法三：分治法**
+**解法四：分治法**
 
 解法很巧妙，值得仔细推敲。
 
@@ -96,33 +125,3 @@ func pushUp(left, right *Line) *Line {
     return &Line{lSum, rSum, sSum, iSum}
 }
 ```
-
-**解法四：动态规划2**
-
-这是常规的动态规划解法，时间复杂度和空间复杂度都比较高。
-
-- 时间复杂度：`O(n^2)`
-- 空间复杂度：`O(n)`
-
-```go
-func maxSubArray(nums []int) int {
-	max := math.MinInt64
-	dp := make([]int, len(nums))
-	for i := 0; i < len(nums); i++ {
-		dp[i] = nums[i]
-		if max < dp[i] {
-			max = dp[i]
-		}
-	}
-	for i := 2; i <= len(nums); i++ {
-		for j := len(nums) - 1; j >= i-1; j-- {
-			dp[j] = dp[j-1] + nums[j]
-			if dp[j] > max {
-				max = dp[j]
-			}
-		}
-	}
-	return max
-}
-```
-
