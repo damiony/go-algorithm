@@ -1,8 +1,6 @@
-验证二叉搜索树
-
-----
-
 ### 题目描述
+
+**验证二叉搜索树：**
 
 给定一个二叉树，判断其是否是一个有效的二叉搜索树。
 
@@ -14,11 +12,9 @@
 >
 > 所有左子树和右子树自身必须也是二叉搜索树。
 
-----
-
 ### 解法
 
-二叉树的定义为：
+**二叉树的定义为：**
 
 ```go
 type TreeNode struct {
@@ -28,9 +24,7 @@ type TreeNode struct {
 }
 ```
 
-
-
-解法一：递归
+**解法一：递归**
 
 - 时间复杂度：`O(n)`
 - 空间复杂度：`O(n)`
@@ -51,9 +45,7 @@ func isBst(root *TreeNode, min int, max int) bool {
 }
 ```
 
-
-
-解法二：迭代+栈
+**解法二：迭代+栈**
 
 - 时间复杂度：`O(n)`
 - 空间复杂度：`O(n)`
@@ -63,36 +55,34 @@ func isValidBST(root *TreeNode) bool {
 	if root == nil {
 		return true
 	}
-
-	minQ := []int{math.MinInt64}
-	maxQ := []int{math.MaxInt64}
-	stack := []*TreeNode{root}
-	for len(stack) > 0 {
-		index := len(stack) - 1
-		node, min, max := stack[index], minQ[index], maxQ[index]
-		stack, minQ, maxQ = stack[:index], minQ[:index], maxQ[:index]
+	nodeStk := []*TreeNode{root}
+	minStk := []int{math.MinInt64}
+	maxStk := []int{math.MaxInt64}
+	for len(nodeStk) > 0 {
+		index := len(nodeStk) - 1
+		node, min, max := nodeStk[index], minStk[index], maxStk[index]
+		nodeStk, minStk, maxStk = nodeStk[:index], minStk[:index], maxStk[:index]
 
 		if node.Val <= min || node.Val >= max {
 			return false
 		}
 		if node.Left != nil {
-			stack = append(stack, node.Left)
-			minQ = append(minQ, min)
-			maxQ = append(maxQ, node.Val)
+			nodeStk = append(nodeStk, node.Left)
+			minStk = append(minStk, min)
+			maxStk = append(maxStk, node.Val)
 		}
 		if node.Right != nil {
-			stack = append(stack, node.Right)
-			minQ = append(minQ, node.Val)
-			maxQ = append(maxQ, max)
+			nodeStk = append(nodeStk, node.Right)
+			minStk = append(minStk, node.Val)
+			maxStk = append(maxStk, max)
 		}
 	}
+
 	return true
 }
 ```
 
-
-
-解法三：迭代+队列
+**解法三：迭代+队列**
 
 - 时间复杂度：`O(n)`
 - 空间复杂度：`O(n)`
@@ -128,9 +118,7 @@ func isValidBST(root *TreeNode) bool {
 }
 ```
 
-
-
-解法四：中序遍历
+**解法四：中序遍历**
 
 二叉搜索树的中序遍历结果是有序的
 
@@ -157,4 +145,3 @@ func isValidBST(root *TreeNode) bool {
 	return true
 }
 ```
-
