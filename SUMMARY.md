@@ -1,5 +1,6 @@
 # Your Book Title
 
+- [脑力风暴](README.md)
 - golang语法
   * [Array](golang语法/Array.md)
   * [Interface](golang语法/Interface.md)
