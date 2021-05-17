@@ -1,4 +1,4 @@
-# Your Book Title
+# gitbook的目录结构
 
 - [脑力风暴](README.md)
 - golang语法
