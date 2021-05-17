@@ -1,15 +1,13 @@
-# go-algorithm
+## 介绍
 
-> 数据结构和算法的go语言实现
+数据结构与算法的`go`语言实现。
 
-# 目录
+[文档地址](https://damion.gitbook.io/go/)
 
-详细题目链接后续添加。
+欢迎[star](https://github.com/damiony/go-algorithm)
 
-* 队列
-* 链表
-* 哈希表
-* 数组
-* 树
-* 栈
-* 其它
+## 目录结构
+
+- `golang`语法
+- 数据结构]
+- 算法例题
